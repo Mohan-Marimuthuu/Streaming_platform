@@ -1,0 +1,102 @@
+
+{% extends 'layouts\mani.html' %}
+{% load static %}
+{% block content %}
+
+<br><br><br>
+<style>
+ 
+ .show-card{
+  position: relative;
+  margin-top: 20px;
+  margin-left: 20px;
+ }
+  .col-sm-2:hover{
+    transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(98, 98, 98, 0.4);
+
+  }
+  .show-card-img-container img{ 
+    width: 100%;
+    margin-left: 0;
+  }
+
+     
+@media (max-width: 992px) {
+  .col-sm-2 {
+    width: 100%;
+    height: auto;
+  }
+  
+}
+
+@media (max-width: 600px) {
+  .col-sm-2 {
+    width: 100%;
+    height: auto;
+  }
+
+ 
+}
+.show-card-title{
+  color: white;
+}
+</style>
+    <div class="container">
+      <br> <br>
+      <h2 >Most Popular Anime</h2>
+      <br><br>
+      <h3 >Popular</h3>
+      <br>
+      <div class="row">
+        {% for anime in top_anime %}
+        <div href="#" class="show-card">
+                  <div class="show-card-img-container">
+                    <a href="{% url 'anime_detail' anime.slug %}">
+                    <img src="{{ anime.Anime_poster.url }}" alt="{{ anime.Anime_name }}" style="width: 100%;">
+                    </a>
+                    <div class="description-image">  {% if anime.slug %}
+        <a class="disc" href="{% url 'anime_detail' anime.slug %}">
+            {{ anime.Anime_description }}
+        </a>
+    {% else %}
+        <span class="disc">{{ anime.Anime_description }}</span>
+    {% endif %}
+                    <hr>
+                      <h3 class="show-card-title">
+                         <a href="{% url 'anime_detail' anime.slug %}">{{ anime.Anime_name }}</a></h3>
+                  <p class="show-card-meta"> <span> Rating {{ anime.Anime_rate}}</span></p>
+                  <span class="like-icon" data-id="{{ anime.id }}" onclick="{% if animefan %} likeBtn(this) {% else %} window.location.href='{% url 'login' %}' {% endif %}"
+      style="font-size:20px; cursor:pointer;">
+    {% if animefan and animefan in anime.like.all %}
+        ❤️
+    {% else %}
+        🤍
+    {% endif %}
+</span>
+
+<span class="like-count">{{ anime.like.count }}</span>
+   {% if animefan %}
+    <a href="{% url 'add_to_watchlist' anime.id %}?next={{ request.path }}" class="watchlist-btn" style="margin-left: 10px; font-size: 20px;">➕</a>
+{% else %}
+    <button class="watchlist-btn" style="background-color: transparent; color: #ffffff;" disabled>➕</button>
+{% endif %}
+                    </div>
+                  </div>
+        </div>
+        {% endfor %}
+  </div>
+    </div>
+
+
+
+
+  
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+   
+
+{% endblock content %}

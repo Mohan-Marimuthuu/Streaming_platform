@@ -1,0 +1,585 @@
+/* ----------------------ROOt--------------------------------------------- */
+
+
+/* -----------------------------------------------------------NAVBAR---------------------------------------------------------------------------------------------------------------------- */
+    /* Base Navbar Style */
+    nav.navbar {
+      background: var(--bg-color-bl);
+      padding: 0.8rem 1.5rem;
+      box-shadow: 0 2px 10px var(--box-shadow-color);
+      font-family: 'Poppins', sans-serif;
+      transition: background 0.3s ease;
+      height: 70px;
+    }
+
+    /* Logo */
+    .navbar .logo {
+      color: var(--golden-color-of);
+      font-weight: bold;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    /* Nav Links */
+    .navbar-nav .nav-link {
+      color: var(--font-2-text-color-wh) !important;
+      margin: 0 10px;
+      font-weight: 500;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: var(--golden-color-of) !important;
+      transform: scale(1.1);
+    }
+
+    /* Dropdown Menu */
+    .dropdown-menu {
+      background: var(--bg-color-bl);
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px var(--box-shadow-color);
+      padding: 0.5rem;
+    }
+
+    .dropdown-item {
+      color: var(--font-2-text-color-wh);
+      transition: background 0.2s, color 0.2s;
+      border-radius: 5px;
+    }
+
+    .dropdown-item:hover {
+      background: var(--golden-color-of);
+      color: var(--font-text-color-bl);
+    }
+
+    /* Submenu style */
+    .dropdown-submenu {
+      position: relative;
+    }
+
+    .dropdown-submenu .dropdown-menu {
+      top: 0;
+      left: 100%;
+      margin-left: 0.5rem;
+    }
+
+    /* Toggler Icon */
+    .navbar-toggler {
+      border: none;
+      color: var(--font-2-text-color-wh);
+    }
+
+    .navbar-toggler:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .fa-bars {
+      color: var(--font-2-text-color-wh);
+      font-size: 1.3rem;
+    }
+
+    /* Dark mode toggle inside dropdown */
+    #toggle-btn {
+      transform: scale(1.2);
+      margin-left: 10px;
+    }
+
+
+    /* ----------------------------------------------------------------------------------- NAVBAR DROP MANu ------------------------------------------------------------------------------- */
+
+     /* Submenu wrapper */
+.dropdown-submenu {
+  position: relative;
+}
+
+/* Submenu content opens to the left */
+.dropdown-submenu .dropdown-menu-left {
+  top: 0;
+  right: 100%;  /* opens to the left of parent */
+  left: auto;
+  margin-top: -1px;
+  display: none; /* hidden by default */
+  position: absolute;
+  z-index: 1000;
+}
+
+/* Show submenu on hover (desktop) */
+.dropdown-submenu:hover .dropdown-menu-left {
+  display: block;
+}
+.dropdown-submenu .dropdown-menu-left {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 100%;
+    left: auto;
+}
+
+.dropdown-submenu .dropdown-menu-left.show {
+    display: block;
+}
+
+  
+
+    /* --------------------------------------------------------------------------carousel slide------------------------------------------------------------------------------------------- */
+
+    #demo {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Carousel inner */
+#animeda-home .carousel-item {
+  position: relative;
+  height: 100vh;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* Images */
+#animeda-home img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  filter: brightness(80%) contrast(105%);
+}
+
+/* Gradient overlay for cinematic effect */
+#animeda-home .carousel-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.1) 100%);
+  z-index: 1;
+}
+
+/* Caption text */
+.carousel-caption {
+  position: absolute;
+  bottom: 25%;
+  left: 10%;
+  text-align: left;
+  z-index: 2;
+  animation: fadeInUp 1.5s ease;
+}
+
+.carousel-caption h1 {
+  font-size: 3rem;
+  color: var(--golden-color-of, #ff9f1c);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+}
+
+/* Description text */
+.home-carousel {
+  position: absolute;
+  bottom: 10%;
+  left: 10%;
+  width: 45%;
+  color: var(--font-2-text-color-wh, white);
+  font-size: 1rem;
+  line-height: 1.6;
+  z-index: 2;
+  animation: fadeInUp 2s ease;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+}
+
+/* Anime logo inside carousel */
+.home-logo {
+  position: absolute;
+  bottom: 15%;
+  right: 10%;
+  width: 2px;
+  z-index: 3;
+  animation: fadeIn 2s ease;
+}
+
+/* Carousel indicators (bottom dots) */
+.carousel-indicators li {
+  background-color: var(--golden-color-of);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.carousel-indicators .active {
+  opacity: 1;
+}
+
+/* Carousel control arrows */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  background-size: 60%;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+  transition: all 0.3s ease;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  transform: scale(1.1);
+}
+
+/* Fade/slide animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+  .carousel-caption h1 {
+    font-size: 2.2rem;
+  }
+  .home-carousel {
+    width: 80%;
+    font-size: 0.9rem;
+  }
+  .home-logo {
+    width: 150px;
+  }
+}
+
+@media (max-width: 576px) {
+  #demo {
+    height: 70vh;
+  }
+  #animeda-home .carousel-item {
+    height: 70vh;
+  }
+  .carousel-caption h1 {
+    font-size: 1.8rem;
+  }
+  .home-carousel {
+    width: 90%;
+    font-size: 0.85rem;
+    bottom: 5%;
+  }
+  .home-logo {
+    display: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.carousel-track-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+  scroll-behavior: smooth;
+}
+
+.show-card {
+  flex: 0 0 auto;
+  width: 200px; /* adjust per your design */
+  margin: 0 10px;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 40%;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.carousel-btn.prev {
+  left: 0;
+}
+
+.carousel-btn.next {
+  right: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------------------------------------------------------------------------------------ANIME CARD------------------------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --------------------------------------------------------------------------------------------------FOOTER-------------------------------------------------------------------------------- */
+
+.container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+}
+
+/* --- Row and Column (Bootstrap) Styling Simulation --- */
+/* Assuming the use of a 12-column grid system */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -15px; /* Counteract padding on columns */
+    margin-right: -15px;
+}
+
+.col-sm-3, .col-sm-6 {
+    padding-left: 15px;
+    padding-right: 15px;
+    /* Base width for smaller screens (overriden by media queries if needed) */
+    width: 100%; 
+    box-sizing: border-box;
+}
+
+/* For small to medium screens (simulating Bootstrap's .col-sm-3) */
+@media (min-width: 768px) {
+    .col-sm-3 {
+        width: 25%;
+    }
+    .col-sm-6 {
+        width: 50%;
+    }
+}
+
+
+/* --- List and Link Styling (Navigation/Connect/Social/Account) --- */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #eee;
+}
+
+li a {
+    text-decoration: none;
+    color: #ccc;
+    line-height: 2.2; /* Spacing between list items */
+    transition: color 0.2s;
+    display: block; /* Makes the whole area clickable */
+    font-size: 14px;
+}
+
+li a:hover {
+    color: #f4005b; /* Bright color on hover (like red/pink for "AnimeDa") */
+}
+
+/* Font Awesome Icon Styling */
+li a i.fa {
+    margin-right: 8px;
+    width: 18px; /* Consistent icon width */
+    text-align: center;
+}
+
+/* Specific styling for the "Start a Free Trial" link with a bell icon */
+.fa-bell {
+    color: #f4005b; /* Highlight the bell icon */
+    font-size: 16px;
+}
+
+
+/* --- Footer Copyright/Language Selector --- */
+footer {
+    padding: 15px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #ccc;
+    /* Ensures the footer content stays within the main container's width */
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+#language-1 {
+    margin-left: 20px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #444;
+    cursor: pointer;
+}
+
+/* --- Horizontal Rules --- */
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #444; /* Darker line */
+    margin: 20px 0;
+}
+
+/* --- About Text Section Styling --- */
+.container p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+/* --- Buttons (More/Collapse) Styling --- */
+.btn-primary {
+    background-color: #f4005b; /* Primary button color (matching hover) */
+    border-color: #f4005b;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    margin-bottom: 15px;
+}
+
+.btn-primary:hover {
+    background-color: #a8003f; /* Darker shade on hover */
+    border-color: #a8003f;
+}
+
+/* Hide the content by default if using a pure CSS collapse, but you are using data-toggle="collapse" 
+   which suggests Bootstrap/JS, so we'll just style the content. */
+.collapse {
+    /* When collapsed, this would typically be display: none */
+    /* When shown, it should flow normally */
+    margin-top: 15px;
+}

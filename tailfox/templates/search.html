@@ -1,0 +1,53 @@
+{% extends 'layouts/mani.html' %}
+{% load static %}
+{% block content %}
+
+<div class=" mt-10 pt-5">
+
+  <!-- Search box always visible on search page -->
+  <div id="searchBarContainer" class="search-bar-area" style="display: block;">
+    <form action="{% url 'search' %}" method="GET" class="search-form">
+      <input type="text" name="query" value="{{ query }}" placeholder="Search Anime..." required>
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+ 
+
+
+  <div class="container">
+  <div class="row">
+    {% if results %}
+    {% for anime in results %}
+        <div href="#" class="show-card">
+                  <div class="show-card-img-container">
+                    <img src="{{ anime.Anime_poster.url }}" alt="{{ anime.Anime_name }}" style="width: 100%;">
+                    <div class="description-image"><a class="disc" href="">{{ anime.Anime_description }}</a>
+                    <hr>
+                      <h3 class="show-card-title">{{ anime.Anime_name }}</h3>
+                  <p class="show-card-meta">Sub | Dub</p>
+                  <span class="like-icon" data-id="{{ anime.id }}" onclick="{% if animefan %} likeBtn(this) {% else %} window.location.href='{% url 'login' %}' {% endif %}"
+      style="font-size:20px; cursor:pointer;">
+    {% if animefan and animefan in anime.like.all %}
+        ❤️
+    {% else %}
+        🤍
+    {% endif %}
+</span>
+<span class="like-count">{{ anime.like.count }}</span>
+                    </div>
+                  </div>
+                  
+                 
+        </div>
+        {% endfor %}
+    {% else %}
+      <p class="mt-4 text-danger">No results found.</p>
+    {% endif %}
+  </div>
+
+</div>
+
+<br><br><br><br>
+</div>
+
+{% endblock content %}

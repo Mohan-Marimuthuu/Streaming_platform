@@ -1,0 +1,117 @@
+{% extends 'layouts/mani.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    body {
+    font-family: "Poppins", sans-serif;
+    background: var(--main-bg-color);
+    color: var(--main-2-bg-color);
+    margin: 0;
+    padding: 0;
+}
+
+.upload-container {
+    max-width: 700px;
+    margin: 40px auto;
+    background: #161b22;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .5);
+}
+
+.upload-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 26px;
+    color: #58a6ff;
+}
+
+label {
+    font-size: 15px;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 6px;
+    color: #c9d1d9;
+}
+
+
+input[type="text"],
+input[type="number"],
+textarea,
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    background: var(--white);
+    color: var(--black);
+    margin-bottom: 18px;
+    font-size: 14px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input[type="checkbox"] {
+    margin-right: 6px;
+    transform: scale(1.15);
+    accent-color: #58a6ff;
+}
+
+
+
+button {
+    width: 100%;
+    padding: 14px;
+    font-size: 17px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    background: #238636;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #2ea043;
+}
+
+</style>
+<div class="container">
+
+<form action="{% url 'upload_anime' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<br><br><br><br>
+    <!-- 🔥 Multiple Videos Upload -->
+     {{ form.as_p }}
+
+    <div id="video-uploads">
+        <div class="video-upload">
+            <input type="number" name="episode_numbers" placeholder="Episode Number" required>
+            <input type="text" name="episode_names" placeholder="Episode Name">
+            <input type="file" name="videos" required>
+        </div>
+    </div>
+<button type="button" onclick="addVideoUpload()">Add Another Episode</button>
+
+    <button type="submit">Upload Anime</button>
+</form>
+
+<script>
+function addVideoUpload() {
+    const container = document.getElementById('video-uploads');
+    const div = document.createElement('div');
+    div.classList.add('video-upload');
+    div.innerHTML = `
+        <input type="number" name="episode_numbers" placeholder="Episode Number" required>
+        <input type="text" name="episode_names" placeholder="Episode Name">
+        <input type="file" name="videos" required>
+    `;
+    container.appendChild(div);
+}
+</script>
+</div>
+{% endblock content %}

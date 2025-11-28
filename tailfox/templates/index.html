@@ -1,0 +1,471 @@
+{% extends 'layouts\mani.html' %}
+{% load static %}
+{% block content %}
+
+
+<br><br>
+
+<div id="animeCarousel" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    {% for anime in carousel_anime %}
+    <li data-target="#animeCarousel" data-slide-to="{{ forloop.counter0 }}"
+      class="{% if forloop.first %}active{% endif %}"></li>
+    {% endfor %}
+  </ol>
+
+  <div class="carousel-inner">
+    {% for anime in carousel_anime %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+      {% if anime.Anime_wallpaper %}
+      <img src="{{ anime.Anime_wallpaper.url }}" class="d-block w-100" alt="{{ anime.Anime_name }}">
+      {% else %}
+
+      {% endif %}
+
+      <div class="carousel-caption">
+        <h3>{{ anime.Anime_name }}</h3>
+        <p class="carousel-caption-disc">{{ anime.Anime_description|truncatechars:150 }}
+
+        </p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <a class="carousel-control-prev" href="#animeCarousel" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#animeCarousel" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+
+
+
+
+<h2 id="ani-may">Celebrate Ani-May with Free-to-Watch Shows!</h2>
+<h4 id="ani--may">Watch these for free during the month of Ani-May!</h4>
+
+
+<br>
+<div class="container">
+  <div id="demo1" class="carousel slide" data-ride="carousel">
+
+
+    <h3>Popular Near You</h3>
+    <section class="content-section" data-carousel>
+      <div class="carousel-container">
+        <div class="carousel-track-container">
+          <div class="carousel-track" data-carousel-track>
+            {% for item_popular in popular_items %}
+            <div class="show-card">
+              <div class="show-card-img-container">
+                <a href="{% url 'anime_detail' item_popular.slug %}">
+                  <img src="{{ item_popular.Anime_poster.url }}" alt="{{ item_popular.Anime_name }}">
+                </a>
+
+                <div class="description-image">
+                  {% if item_popular.slug %}
+                  <a class="disc" href="{% url 'anime_detail' item_popular.slug %}">
+                    {{ item_popular.Anime_description }}
+                  </a>
+                  {% else %}
+                  <span class="disc">{{ item_popular.Anime_description }}</span>
+                  {% endif %}
+                  <hr>
+                  <h5 class="show-card-title">
+                    <a href="{% url 'anime_detail' item_popular.slug %}">{{ item_popular.Anime_name }}</a>
+                  </h5>
+                  <p class="show-card-meta"><span> Rating {{ item_popular.Anime_rate}}</span></p>
+
+                  <!-- Like Button -->
+                  <span class="like-icon" data-id="{{ item_popular.id }}"
+                    onclick="{% if animefan %} likeBtn(this) {% else %} window.location.href='{% url 'login' %}' {% endif %}"
+                    style="font-size:20px; cursor:pointer;">
+                    {% if animefan and animefan in item_popular.like.all %}
+                    ❤️
+                    {% else %}
+                    🤍
+                    {% endif %}
+                  </span>
+                  <span class="like-count">{{ item_popular.like.count }}</span>
+
+                  <!-- Add to Watchlist -->
+                  {% if animefan %}
+                  <a href="{% url 'add_to_watchlist' item_popular.id %}?next={{ request.path }}" class="watchlist-btn"
+                    style="margin-left: 10px; font-size: 20px;">➕</a>
+                  {% else %}
+                  <button class="watchlist-btn" style="background-color: transparent; color: #ffffff;"
+                    disabled>➕</button>
+                  {% endif %}
+
+                </div>
+
+
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+
+
+
+  <div id="demo1" class="carousel slide" data-ride="carousel">
+    <h3>Free English Dubbed Anime</h3>
+    <section class="content-section" data-carousel>
+      <div class="carousel-container">
+        <div class="carousel-track-container">
+          <div class="carousel-track" data-carousel-track>
+            {% for item_popular in popular_items %}
+            <div class="show-card">
+              <div class="show-card-img-container">
+                <a href="{% url 'anime_detail' item_popular.slug %}">
+                  <img src="{{ item_popular.Anime_poster.url }}" alt="{{ item_popular.Anime_name }}">
+                </a>
+
+                <div class="description-image">
+                  {% if item_popular.slug %}
+                  <a class="disc" href="{% url 'anime_detail' item_popular.slug %}">
+                    {{ item_popular.Anime_description }}
+                  </a>
+                  {% else %}
+                  <span class="disc">{{ item_popular.Anime_description }}</span>
+                  {% endif %}
+                  <hr>
+                  <h5 class="show-card-title">
+                    <a href="{% url 'anime_detail' item_popular.slug %}">{{ item_popular.Anime_name }}</a>
+                  </h5>
+                  <p class="show-card-meta"><span> Rating {{ item_popular.Anime_rate}}</span></p>
+
+                  <!-- Like Button -->
+                  <span class="like-icon" data-id="{{ item_popular.id }}"
+                    onclick="{% if animefan %} likeBtn(this) {% else %} window.location.href='{% url 'login' %}' {% endif %}"
+                    style="font-size:20px; cursor:pointer;">
+                    {% if animefan and animefan in item_popular.like.all %}
+                    ❤️
+                    {% else %}
+                    🤍
+                    {% endif %}
+                  </span>
+                  <span class="like-count">{{ item_popular.like.count }}</span>
+
+                  <!-- Add to Watchlist -->
+                  {% if animefan %}
+                  <a href="{% url 'add_to_watchlist' item_popular.id %}?next={{ request.path }}" class="watchlist-btn"
+                    style="margin-left: 10px; font-size: 20px;">➕</a>
+                  {% else %}
+                  <button class="watchlist-btn" style="background-color: transparent; color: #ffffff;"
+                    disabled>➕</button>
+                  {% endif %}
+
+                </div>
+
+
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+
+
+
+  <div id="demo1" class="carousel slide" data-ride="carousel">
+    <h3>Kickstart Your Anime Journey</h3>
+    <section class="content-section" data-carousel>
+      <div class="carousel-container">
+        <div class="carousel-track-container">
+          <div class="carousel-track" data-carousel-track>
+            {% for item_popular in popular_items %}
+            <div class="show-card">
+              <div class="show-card-img-container">
+                <a href="{% url 'anime_detail' item_popular.slug %}">
+                  <img src="{{ item_popular.Anime_poster.url }}" alt="{{ item_popular.Anime_name }}">
+                </a>
+
+                <div class="description-image">
+                  {% if item_popular.slug %}
+                  <a class="disc" href="{% url 'anime_detail' item_popular.slug %}">
+                    {{ item_popular.Anime_description }}
+                  </a>
+                  {% else %}
+                  <span class="disc">{{ item_popular.Anime_description }}</span>
+                  {% endif %}
+                  <hr>
+                  <h5 class="show-card-title">
+                    <a href="{% url 'anime_detail' item_popular.slug %}">{{ item_popular.Anime_name }}</a>
+                  </h5>
+                  <p class="show-card-meta"><span> Rating {{ item_popular.Anime_rate}}</span></p>
+
+                  <!-- Like Button -->
+                  <span class="like-icon" data-id="{{ item_popular.id }}"
+                    onclick="{% if animefan %} likeBtn(this) {% else %} window.location.href='{% url 'login' %}' {% endif %}"
+                    style="font-size:20px; cursor:pointer;">
+                    {% if animefan and animefan in item_popular.like.all %}
+                    ❤️
+                    {% else %}
+                    🤍
+                    {% endif %}
+                  </span>
+                  <span class="like-count">{{ item_popular.like.count }}</span>
+
+                  <!-- Add to Watchlist -->
+                  {% if animefan %}
+                  <a href="{% url 'add_to_watchlist' item_popular.id %}?next={{ request.path }}" class="watchlist-btn"
+                    style="margin-left: 10px; font-size: 20px;">➕</a>
+                  {% else %}
+                  <button class="watchlist-btn" style="background-color: transparent; color: #ffffff;"
+                    disabled>➕</button>
+                  {% endif %}
+
+                </div>
+
+
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+
+
+  <div id="demo1" class="carousel slide" data-ride="carousel">
+    <h3>Comedy Anime </h3>
+    <section class="content-section" data-carousel>
+      <div class="carousel-container">
+        <div class="carousel-track-container">
+          <div class="carousel-track" data-carousel-track>
+            {% for item_popular in popular_items %}
+            <div class="show-card">
+              <div class="show-card-img-container">
+                <a href="{% url 'anime_detail' item_popular.slug %}">
+                  <img src="{{ item_popular.Anime_poster.url }}" alt="{{ item_popular.Anime_name }}">
+                </a>
+
+                <div class="description-image">
+                  {% if item_popular.slug %}
+                  <a class="disc" href="{% url 'anime_detail' item_popular.slug %}">
+                    {{ item_popular.Anime_description }}
+                  </a>
+                  {% else %}
+                  <span class="disc">{{ item_popular.Anime_description }}</span>
+                  {% endif %}
+                  <hr>
+                  <h5 class="show-card-title">
+                    <a href="{% url 'anime_detail' item_popular.slug %}">{{ item_popular.Anime_name }}</a>
+                  </h5>
+                  <p class="show-card-meta"><span> Rating {{ item_popular.Anime_rate}}</span></p>
+
+                  <!-- Like Button -->
+                  <span class="like-icon" data-id="{{ item_popular.id }}"
+                    onclick="{% if animefan %} likeBtn(this) {% else %} window.location.href='{% url 'login' %}' {% endif %}"
+                    style="font-size:20px; cursor:pointer;">
+                    {% if animefan and animefan in item_popular.like.all %}
+                    ❤️
+                    {% else %}
+                    🤍
+                    {% endif %}
+                  </span>
+                  <span class="like-count">{{ item_popular.like.count }}</span>
+
+                  <!-- Add to Watchlist -->
+                  {% if animefan %}
+                  <a href="{% url 'add_to_watchlist' item_popular.id %}?next={{ request.path }}" class="watchlist-btn"
+                    style="margin-left: 10px; font-size: 20px;">➕</a>
+                  {% else %}
+                  <button class="watchlist-btn" style="background-color: transparent; color: #ffffff;"
+                    disabled>➕</button>
+                  {% endif %}
+
+                </div>
+
+
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+
+  <br>
+  <br>
+  <div class="container" id="starttrial">
+    <div class="card-content">
+      <h3 class="card-title">AnimeDa: Watch Anime Anytime, Anywhere</h3>
+      <p class="card-description">Get all anime and games ad-free, plus download content! Try it free for 7
+        days.
+        Cancel anytime.</p>
+      <div id="but">
+        <button>START FREE
+          TRIAL</button>
+      </div>
+    </div>
+  </div>
+  <br><br><br><br>
+
+  <div id="demo1" class="carousel slide" data-ride="carousel">
+    <h3>Comedy Anime</h3>
+    <section class="content-section" data-carousel>
+      <div class="carousel-container">
+        <div class="carousel-track-container">
+          <div class="carousel-track" data-carousel-track>
+            {% for item_popular in popular_items %}
+            <div class="show-card">
+              <div class="show-card-img-container">
+                <a href="{% url 'anime_detail' item_popular.slug %}">
+                  <img src="{{ item_popular.Anime_poster.url }}" alt="{{ item_popular.Anime_name }}">
+                </a>
+
+                <div class="description-image">
+                  {% if item_popular.slug %}
+                  <a class="disc" href="{% url 'anime_detail' item_popular.slug %}">
+                    {{ item_popular.Anime_description }}
+                  </a>
+                  {% else %}
+                  <span class="disc">{{ item_popular.Anime_description }}</span>
+                  {% endif %}
+                  <hr>
+                  <h5 class="show-card-title">
+                    <a href="{% url 'anime_detail' item_popular.slug %}">{{ item_popular.Anime_name }}</a>
+                  </h5>
+                  <p class="show-card-meta"><span> Rating {{ item_popular.Anime_rate}}</span></p>
+
+                  <!-- Like Button -->
+                  <span class="like-icon" data-id="{{ item_popular.id }}"
+                    onclick="{% if animefan %} likeBtn(this) {% else %} window.location.href='{% url 'login' %}' {% endif %}"
+                    style="font-size:20px; cursor:pointer;">
+                    {% if animefan and animefan in item_popular.like.all %}
+                    ❤️
+                    {% else %}
+                    🤍
+                    {% endif %}
+                  </span>
+                  <span class="like-count">{{ item_popular.like.count }}</span>
+
+                  <!-- Add to Watchlist -->
+                  {% if animefan %}
+                  <a href="{% url 'add_to_watchlist' item_popular.id %}?next={{ request.path }}" class="watchlist-btn"
+                    style="margin-left: 10px; font-size: 20px;">➕</a>
+                  {% else %}
+                  <button class="watchlist-btn" style="background-color: transparent; color: #ffffff;"
+                    disabled>➕</button>
+                  {% endif %}
+
+                </div>
+
+
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+
+  <div id="demo1" class="carousel slide" data-ride="carousel">
+
+    <h3>Mystery Anime</h3>
+    <section class="content-section" data-carousel>
+      <div class="carousel-container">
+        <div class="carousel-track-container">
+          <div class="carousel-track" data-carousel-track>
+            {% for item_popular in popular_items %}
+            <div class="show-card">
+              <div class="show-card-img-container">
+                <a href="{% url 'anime_detail' item_popular.slug %}">
+                  <img src="{{ item_popular.Anime_poster.url }}" alt="{{ item_popular.Anime_name }}">
+                </a>
+
+                <div class="description-image">
+                  {% if item_popular.slug %}
+                  <a class="disc" href="{% url 'anime_detail' item_popular.slug %}">
+                    {{ item_popular.Anime_description }}
+                  </a>
+                  {% else %}
+                  <span class="disc">{{ item_popular.Anime_description }}</span>
+                  {% endif %}
+                  <hr>
+                  <h5 class="show-card-title">
+                    <a href="{% url 'anime_detail' item_popular.slug %}">{{ item_popular.Anime_name }}</a>
+                  </h5>
+                  <p class="show-card-meta"><span> Rating {{ item_popular.Anime_rate}}</span></p>
+
+                  <!-- Like Button -->
+                  <span class="like-icon" data-id="{{ item_popular.id }}"
+                    onclick="{% if animefan %} likeBtn(this) {% else %} window.location.href='{% url 'login' %}' {% endif %}"
+                    style="font-size:20px; cursor:pointer;">
+                    {% if animefan and animefan in item_popular.like.all %}
+                    ❤️
+                    {% else %}
+                    🤍
+                    {% endif %}
+                  </span>
+                  <span class="like-count">{{ item_popular.like.count }}</span>
+
+                  <!-- Add to Watchlist -->
+                  {% if animefan %}
+                  <a href="{% url 'add_to_watchlist' item_popular.id %}?next={{ request.path }}" class="watchlist-btn"
+                    style="margin-left: 10px; font-size: 20px;">➕</a>
+                  {% else %}
+                  <button class="watchlist-btn" style="background-color: transparent; color: #ffffff;"
+                    disabled>➕</button>
+                  {% endif %}
+
+                </div>
+
+
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+
+
+
+
+
+  <br>
+  <div class="container">
+    <h3>2025 AnimeDa Anime Awards
+      Winners
+    </h3>
+    <p>Relive the Magic</p>
+  </div>
+
+
+
+
+
+  {% endblock content %}

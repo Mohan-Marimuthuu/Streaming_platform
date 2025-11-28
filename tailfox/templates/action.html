@@ -1,0 +1,777 @@
+{% extends 'layouts/mani.html' %}
+{% load static %}
+{% block content %}
+
+
+<!-- Action Section -->
+<section id="action" class="content-section genre-section">
+  <h2>Action</h2>
+  <p>For all your fist-flying and huge-explosion needs!</p>
+
+      <section class="content-section" data-carousel>
+         <div class="carousel-container">
+        <div class="carousel-track-container">
+          <div class="carousel-track" data-carousel-track>
+            {% for item_popular in popular_items %}
+            <div class="show-card">
+              <div class="show-card-img-container">
+                <a href="{% url 'anime_detail' item_popular.slug %}">
+                  <img src="{{ item_popular.Anime_poster.url }}" alt="{{ item_popular.Anime_name }}">
+                </a>
+
+                <div class="description-image">
+                  {% if item_popular.slug %}
+                  <a class="disc" href="{% url 'anime_detail' item_popular.slug %}">
+                    {{ item_popular.Anime_description }}
+                  </a>
+                  {% else %}
+                  <span class="disc">{{ item_popular.Anime_description }}</span>
+                  {% endif %}
+                  <hr>
+                  <h5 class="show-card-title">
+                    <a href="{% url 'anime_detail' item_popular.slug %}">{{ item_popular.Anime_name }}</a>
+                  </h5>
+                  <p class="show-card-meta"><span> Rating {{ item_popular.Anime_rate}}</span></p>
+
+                  <!-- Like Button -->
+                  <span class="like-icon" data-id="{{ item_popular.id }}"
+                    onclick="{% if animefan %} likeBtn(this) {% else %} window.location.href='{% url 'login' %}' {% endif %}"
+                    style="font-size:20px; cursor:pointer;">
+                    {% if animefan and animefan in item_popular.like.all %}
+                    ❤️
+                    {% else %}
+                    🤍
+                    {% endif %}
+                  </span>
+                  <span class="like-count">{{ item_popular.like.count }}</span>
+
+                  <!-- Add to Watchlist -->
+                  {% if animefan %}
+                  <a href="{% url 'add_to_watchlist' item_popular.id %}?next={{ request.path }}" class="watchlist-btn"
+                    style="margin-left: 10px; font-size: 20px;">➕</a>
+                  {% else %}
+                  <button class="watchlist-btn" style="background-color: transparent; color: #ffffff;"
+                    disabled>➕</button>
+                  {% endif %}
+
+                </div>
+
+
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+  <!-- Action carousel/content here -->
+</section>
+
+<!-- Fantasy Section -->
+<section id="fantasy" class="content-section genre-section">
+  <h2>Fantasy</h2>
+  <p>Enter worlds filled with dragons, heroes, and magical adventures.</p>
+
+
+      <section class="content-section" data-carousel>
+         <div class="carousel-container">
+        <div class="carousel-track-container">
+          <div class="carousel-track" data-carousel-track>
+            {% for item_popular in popular_items %}
+            <div class="show-card">
+              <div class="show-card-img-container">
+                <a href="{% url 'anime_detail' item_popular.slug %}">
+                  <img src="{{ item_popular.Anime_poster.url }}" alt="{{ item_popular.Anime_name }}">
+                </a>
+
+                <div class="description-image">
+                  {% if item_popular.slug %}
+                  <a class="disc" href="{% url 'anime_detail' item_popular.slug %}">
+                    {{ item_popular.Anime_description }}
+                  </a>
+                  {% else %}
+                  <span class="disc">{{ item_popular.Anime_description }}</span>
+                  {% endif %}
+                  <hr>
+                  <h5 class="show-card-title">
+                    <a href="{% url 'anime_detail' item_popular.slug %}">{{ item_popular.Anime_name }}</a>
+                  </h5>
+                  <p class="show-card-meta"><span> Rating {{ item_popular.Anime_rate}}</span></p>
+
+                  <!-- Like Button -->
+                  <span class="like-icon" data-id="{{ item_popular.id }}"
+                    onclick="{% if animefan %} likeBtn(this) {% else %} window.location.href='{% url 'login' %}' {% endif %}"
+                    style="font-size:20px; cursor:pointer;">
+                    {% if animefan and animefan in item_popular.like.all %}
+                    ❤️
+                    {% else %}
+                    🤍
+                    {% endif %}
+                  </span>
+                  <span class="like-count">{{ item_popular.like.count }}</span>
+
+                  <!-- Add to Watchlist -->
+                  {% if animefan %}
+                  <a href="{% url 'add_to_watchlist' item_popular.id %}?next={{ request.path }}" class="watchlist-btn"
+                    style="margin-left: 10px; font-size: 20px;">➕</a>
+                  {% else %}
+                  <button class="watchlist-btn" style="background-color: transparent; color: #ffffff;"
+                    disabled>➕</button>
+                  {% endif %}
+
+                </div>
+
+
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+  <!-- Fantasy carousel/content here -->
+</section>
+
+<!-- Drama Section -->
+<section id="drama" class="content-section genre-section">
+  <h2>Drama</h2>
+  <p>Emotional storytelling, heartfelt moments, and realistic characters.</p>
+
+
+
+      <section class="content-section" data-carousel>
+         <div class="carousel-container">
+        <div class="carousel-track-container">
+          <div class="carousel-track" data-carousel-track>
+            {% for item_popular in popular_items %}
+            <div class="show-card">
+              <div class="show-card-img-container">
+                <a href="{% url 'anime_detail' item_popular.slug %}">
+                  <img src="{{ item_popular.Anime_poster.url }}" alt="{{ item_popular.Anime_name }}">
+                </a>
+
+                <div class="description-image">
+                  {% if item_popular.slug %}
+                  <a class="disc" href="{% url 'anime_detail' item_popular.slug %}">
+                    {{ item_popular.Anime_description }}
+                  </a>
+                  {% else %}
+                  <span class="disc">{{ item_popular.Anime_description }}</span>
+                  {% endif %}
+                  <hr>
+                  <h5 class="show-card-title">
+                    <a href="{% url 'anime_detail' item_popular.slug %}">{{ item_popular.Anime_name }}</a>
+                  </h5>
+                  <p class="show-card-meta"><span> Rating {{ item_popular.Anime_rate}}</span></p>
+
+                  <!-- Like Button -->
+                  <span class="like-icon" data-id="{{ item_popular.id }}"
+                    onclick="{% if animefan %} likeBtn(this) {% else %} window.location.href='{% url 'login' %}' {% endif %}"
+                    style="font-size:20px; cursor:pointer;">
+                    {% if animefan and animefan in item_popular.like.all %}
+                    ❤️
+                    {% else %}
+                    🤍
+                    {% endif %}
+                  </span>
+                  <span class="like-count">{{ item_popular.like.count }}</span>
+
+                  <!-- Add to Watchlist -->
+                  {% if animefan %}
+                  <a href="{% url 'add_to_watchlist' item_popular.id %}?next={{ request.path }}" class="watchlist-btn"
+                    style="margin-left: 10px; font-size: 20px;">➕</a>
+                  {% else %}
+                  <button class="watchlist-btn" style="background-color: transparent; color: #ffffff;"
+                    disabled>➕</button>
+                  {% endif %}
+
+                </div>
+
+
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+  <!-- Drama carousel/content here -->
+</section>
+
+<!-- Romance Section -->
+<section id="romance" class="content-section genre-section">
+  <h2>Romance</h2>
+  <p>Love stories that will make your heart skip a beat.</p>
+
+
+      <section class="content-section" data-carousel>
+         <div class="carousel-container">
+        <div class="carousel-track-container">
+          <div class="carousel-track" data-carousel-track>
+            {% for item_popular in popular_items %}
+            <div class="show-card">
+              <div class="show-card-img-container">
+                <a href="{% url 'anime_detail' item_popular.slug %}">
+                  <img src="{{ item_popular.Anime_poster.url }}" alt="{{ item_popular.Anime_name }}">
+                </a>
+
+                <div class="description-image">
+                  {% if item_popular.slug %}
+                  <a class="disc" href="{% url 'anime_detail' item_popular.slug %}">
+                    {{ item_popular.Anime_description }}
+                  </a>
+                  {% else %}
+                  <span class="disc">{{ item_popular.Anime_description }}</span>
+                  {% endif %}
+                  <hr>
+                  <h5 class="show-card-title">
+                    <a href="{% url 'anime_detail' item_popular.slug %}">{{ item_popular.Anime_name }}</a>
+                  </h5>
+                  <p class="show-card-meta"><span> Rating {{ item_popular.Anime_rate}}</span></p>
+
+                  <!-- Like Button -->
+                  <span class="like-icon" data-id="{{ item_popular.id }}"
+                    onclick="{% if animefan %} likeBtn(this) {% else %} window.location.href='{% url 'login' %}' {% endif %}"
+                    style="font-size:20px; cursor:pointer;">
+                    {% if animefan and animefan in item_popular.like.all %}
+                    ❤️
+                    {% else %}
+                    🤍
+                    {% endif %}
+                  </span>
+                  <span class="like-count">{{ item_popular.like.count }}</span>
+
+                  <!-- Add to Watchlist -->
+                  {% if animefan %}
+                  <a href="{% url 'add_to_watchlist' item_popular.id %}?next={{ request.path }}" class="watchlist-btn"
+                    style="margin-left: 10px; font-size: 20px;">➕</a>
+                  {% else %}
+                  <button class="watchlist-btn" style="background-color: transparent; color: #ffffff;"
+                    disabled>➕</button>
+                  {% endif %}
+
+                </div>
+
+
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+  <!-- Romance carousel/content here -->
+</section>
+
+<!-- Adventure Section -->
+<section id="adventure" class="content-section genre-section">
+  <h2>Adventure</h2>
+  <p>Embark on journeys across lands, seas, and beyond imagination.</p>
+
+
+      <section class="content-section" data-carousel>
+         <div class="carousel-container">
+        <div class="carousel-track-container">
+          <div class="carousel-track" data-carousel-track>
+            {% for item_popular in popular_items %}
+            <div class="show-card">
+              <div class="show-card-img-container">
+                <a href="{% url 'anime_detail' item_popular.slug %}">
+                  <img src="{{ item_popular.Anime_poster.url }}" alt="{{ item_popular.Anime_name }}">
+                </a>
+
+                <div class="description-image">
+                  {% if item_popular.slug %}
+                  <a class="disc" href="{% url 'anime_detail' item_popular.slug %}">
+                    {{ item_popular.Anime_description }}
+                  </a>
+                  {% else %}
+                  <span class="disc">{{ item_popular.Anime_description }}</span>
+                  {% endif %}
+                  <hr>
+                  <h5 class="show-card-title">
+                    <a href="{% url 'anime_detail' item_popular.slug %}">{{ item_popular.Anime_name }}</a>
+                  </h5>
+                  <p class="show-card-meta"><span> Rating {{ item_popular.Anime_rate}}</span></p>
+
+                  <!-- Like Button -->
+                  <span class="like-icon" data-id="{{ item_popular.id }}"
+                    onclick="{% if animefan %} likeBtn(this) {% else %} window.location.href='{% url 'login' %}' {% endif %}"
+                    style="font-size:20px; cursor:pointer;">
+                    {% if animefan and animefan in item_popular.like.all %}
+                    ❤️
+                    {% else %}
+                    🤍
+                    {% endif %}
+                  </span>
+                  <span class="like-count">{{ item_popular.like.count }}</span>
+
+                  <!-- Add to Watchlist -->
+                  {% if animefan %}
+                  <a href="{% url 'add_to_watchlist' item_popular.id %}?next={{ request.path }}" class="watchlist-btn"
+                    style="margin-left: 10px; font-size: 20px;">➕</a>
+                  {% else %}
+                  <button class="watchlist-btn" style="background-color: transparent; color: #ffffff;"
+                    disabled>➕</button>
+                  {% endif %}
+
+                </div>
+
+
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+  <!-- Adventure carousel/content here -->
+</section>
+
+<!-- Mystery Section -->
+<section id="mystery" class="content-section genre-section">
+  <h2>Mystery</h2>
+  <p>Unravel secrets, solve crimes, and uncover hidden truths.</p>
+
+
+      <section class="content-section" data-carousel>
+         <div class="carousel-container">
+        <div class="carousel-track-container">
+          <div class="carousel-track" data-carousel-track>
+            {% for item_popular in popular_items %}
+            <div class="show-card">
+              <div class="show-card-img-container">
+                <a href="{% url 'anime_detail' item_popular.slug %}">
+                  <img src="{{ item_popular.Anime_poster.url }}" alt="{{ item_popular.Anime_name }}">
+                </a>
+
+                <div class="description-image">
+                  {% if item_popular.slug %}
+                  <a class="disc" href="{% url 'anime_detail' item_popular.slug %}">
+                    {{ item_popular.Anime_description }}
+                  </a>
+                  {% else %}
+                  <span class="disc">{{ item_popular.Anime_description }}</span>
+                  {% endif %}
+                  <hr>
+                  <h5 class="show-card-title">
+                    <a href="{% url 'anime_detail' item_popular.slug %}">{{ item_popular.Anime_name }}</a>
+                  </h5>
+                  <p class="show-card-meta"><span> Rating {{ item_popular.Anime_rate}}</span></p>
+
+                  <!-- Like Button -->
+                  <span class="like-icon" data-id="{{ item_popular.id }}"
+                    onclick="{% if animefan %} likeBtn(this) {% else %} window.location.href='{% url 'login' %}' {% endif %}"
+                    style="font-size:20px; cursor:pointer;">
+                    {% if animefan and animefan in item_popular.like.all %}
+                    ❤️
+                    {% else %}
+                    🤍
+                    {% endif %}
+                  </span>
+                  <span class="like-count">{{ item_popular.like.count }}</span>
+
+                  <!-- Add to Watchlist -->
+                  {% if animefan %}
+                  <a href="{% url 'add_to_watchlist' item_popular.id %}?next={{ request.path }}" class="watchlist-btn"
+                    style="margin-left: 10px; font-size: 20px;">➕</a>
+                  {% else %}
+                  <button class="watchlist-btn" style="background-color: transparent; color: #ffffff;"
+                    disabled>➕</button>
+                  {% endif %}
+
+                </div>
+
+
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+  <!-- Mystery carousel/content here -->
+</section>
+
+<!-- Comedy Section -->
+<section id="comedy" class="content-section genre-section">
+  <h2>Comedy</h2>
+  <p>Laugh out loud with hilarious characters and funny moments.</p>
+
+      <section class="content-section" data-carousel>
+         <div class="carousel-container">
+        <div class="carousel-track-container">
+          <div class="carousel-track" data-carousel-track>
+            {% for item_popular in popular_items %}
+            <div class="show-card">
+              <div class="show-card-img-container">
+                <a href="{% url 'anime_detail' item_popular.slug %}">
+                  <img src="{{ item_popular.Anime_poster.url }}" alt="{{ item_popular.Anime_name }}">
+                </a>
+
+                <div class="description-image">
+                  {% if item_popular.slug %}
+                  <a class="disc" href="{% url 'anime_detail' item_popular.slug %}">
+                    {{ item_popular.Anime_description }}
+                  </a>
+                  {% else %}
+                  <span class="disc">{{ item_popular.Anime_description }}</span>
+                  {% endif %}
+                  <hr>
+                  <h5 class="show-card-title">
+                    <a href="{% url 'anime_detail' item_popular.slug %}">{{ item_popular.Anime_name }}</a>
+                  </h5>
+                  <p class="show-card-meta"><span> Rating {{ item_popular.Anime_rate}}</span></p>
+
+                  <!-- Like Button -->
+                  <span class="like-icon" data-id="{{ item_popular.id }}"
+                    onclick="{% if animefan %} likeBtn(this) {% else %} window.location.href='{% url 'login' %}' {% endif %}"
+                    style="font-size:20px; cursor:pointer;">
+                    {% if animefan and animefan in item_popular.like.all %}
+                    ❤️
+                    {% else %}
+                    🤍
+                    {% endif %}
+                  </span>
+                  <span class="like-count">{{ item_popular.like.count }}</span>
+
+                  <!-- Add to Watchlist -->
+                  {% if animefan %}
+                  <a href="{% url 'add_to_watchlist' item_popular.id %}?next={{ request.path }}" class="watchlist-btn"
+                    style="margin-left: 10px; font-size: 20px;">➕</a>
+                  {% else %}
+                  <button class="watchlist-btn" style="background-color: transparent; color: #ffffff;"
+                    disabled>➕</button>
+                  {% endif %}
+
+                </div>
+
+
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+  <!-- Comedy carousel/content here -->
+</section>
+
+<!-- Sports Section -->
+<section id="sports" class="content-section genre-section">
+  <h2>Sports</h2>
+  <p>Cheer for your favorite teams and experience the thrill of victory.</p>
+
+      <section class="content-section" data-carousel>
+         <div class="carousel-container">
+        <div class="carousel-track-container">
+          <div class="carousel-track" data-carousel-track>
+            {% for item_popular in popular_items %}
+            <div class="show-card">
+              <div class="show-card-img-container">
+                <a href="{% url 'anime_detail' item_popular.slug %}">
+                  <img src="{{ item_popular.Anime_poster.url }}" alt="{{ item_popular.Anime_name }}">
+                </a>
+
+                <div class="description-image">
+                  {% if item_popular.slug %}
+                  <a class="disc" href="{% url 'anime_detail' item_popular.slug %}">
+                    {{ item_popular.Anime_description }}
+                  </a>
+                  {% else %}
+                  <span class="disc">{{ item_popular.Anime_description }}</span>
+                  {% endif %}
+                  <hr>
+                  <h5 class="show-card-title">
+                    <a href="{% url 'anime_detail' item_popular.slug %}">{{ item_popular.Anime_name }}</a>
+                  </h5>
+                  <p class="show-card-meta"><span> Rating {{ item_popular.Anime_rate}}</span></p>
+
+                  <!-- Like Button -->
+                  <span class="like-icon" data-id="{{ item_popular.id }}"
+                    onclick="{% if animefan %} likeBtn(this) {% else %} window.location.href='{% url 'login' %}' {% endif %}"
+                    style="font-size:20px; cursor:pointer;">
+                    {% if animefan and animefan in item_popular.like.all %}
+                    ❤️
+                    {% else %}
+                    🤍
+                    {% endif %}
+                  </span>
+                  <span class="like-count">{{ item_popular.like.count }}</span>
+
+                  <!-- Add to Watchlist -->
+                  {% if animefan %}
+                  <a href="{% url 'add_to_watchlist' item_popular.id %}?next={{ request.path }}" class="watchlist-btn"
+                    style="margin-left: 10px; font-size: 20px;">➕</a>
+                  {% else %}
+                  <button class="watchlist-btn" style="background-color: transparent; color: #ffffff;"
+                    disabled>➕</button>
+                  {% endif %}
+
+                </div>
+
+
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+  <!-- Sports carousel/content here -->
+</section>
+
+<!-- Music Section -->
+<section id="music" class="content-section genre-section">
+  <h2>Music</h2>
+  <p>Feel the rhythm and follow the beat of inspiring musical journeys.</p>
+
+
+      <section class="content-section" data-carousel>
+         <div class="carousel-container">
+        <div class="carousel-track-container">
+          <div class="carousel-track" data-carousel-track>
+            {% for item_popular in popular_items %}
+            <div class="show-card">
+              <div class="show-card-img-container">
+                <a href="{% url 'anime_detail' item_popular.slug %}">
+                  <img src="{{ item_popular.Anime_poster.url }}" alt="{{ item_popular.Anime_name }}">
+                </a>
+
+                <div class="description-image">
+                  {% if item_popular.slug %}
+                  <a class="disc" href="{% url 'anime_detail' item_popular.slug %}">
+                    {{ item_popular.Anime_description }}
+                  </a>
+                  {% else %}
+                  <span class="disc">{{ item_popular.Anime_description }}</span>
+                  {% endif %}
+                  <hr>
+                  <h5 class="show-card-title">
+                    <a href="{% url 'anime_detail' item_popular.slug %}">{{ item_popular.Anime_name }}</a>
+                  </h5>
+                  <p class="show-card-meta"><span> Rating {{ item_popular.Anime_rate}}</span></p>
+
+                  <!-- Like Button -->
+                  <span class="like-icon" data-id="{{ item_popular.id }}"
+                    onclick="{% if animefan %} likeBtn(this) {% else %} window.location.href='{% url 'login' %}' {% endif %}"
+                    style="font-size:20px; cursor:pointer;">
+                    {% if animefan and animefan in item_popular.like.all %}
+                    ❤️
+                    {% else %}
+                    🤍
+                    {% endif %}
+                  </span>
+                  <span class="like-count">{{ item_popular.like.count }}</span>
+
+                  <!-- Add to Watchlist -->
+                  {% if animefan %}
+                  <a href="{% url 'add_to_watchlist' item_popular.id %}?next={{ request.path }}" class="watchlist-btn"
+                    style="margin-left: 10px; font-size: 20px;">➕</a>
+                  {% else %}
+                  <button class="watchlist-btn" style="background-color: transparent; color: #ffffff;"
+                    disabled>➕</button>
+                  {% endif %}
+
+                </div>
+
+
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+  <!-- Music carousel/content here -->
+</section>
+
+<section id="horror" class="content-section genre-section">
+  <h2>Horror</h2>
+  <p>Step into the dark side — where ghosts, demons, and nightmares come alive. Not for the faint of heart!</p>
+
+      <section class="content-section" data-carousel>
+         <div class="carousel-container">
+        <div class="carousel-track-container">
+          <div class="carousel-track" data-carousel-track>
+            {% for item_popular in popular_items %}
+            <div class="show-card">
+              <div class="show-card-img-container">
+                <a href="{% url 'anime_detail' item_popular.slug %}">
+                  <img src="{{ item_popular.Anime_poster.url }}" alt="{{ item_popular.Anime_name }}">
+                </a>
+
+                <div class="description-image">
+                  {% if item_popular.slug %}
+                  <a class="disc" href="{% url 'anime_detail' item_popular.slug %}">
+                    {{ item_popular.Anime_description }}
+                  </a>
+                  {% else %}
+                  <span class="disc">{{ item_popular.Anime_description }}</span>
+                  {% endif %}
+                  <hr>
+                  <h5 class="show-card-title">
+                    <a href="{% url 'anime_detail' item_popular.slug %}">{{ item_popular.Anime_name }}</a>
+                  </h5>
+                  <p class="show-card-meta"><span> Rating {{ item_popular.Anime_rate}}</span></p>
+
+                  <!-- Like Button -->
+                  <span class="like-icon" data-id="{{ item_popular.id }}"
+                    onclick="{% if animefan %} likeBtn(this) {% else %} window.location.href='{% url 'login' %}' {% endif %}"
+                    style="font-size:20px; cursor:pointer;">
+                    {% if animefan and animefan in item_popular.like.all %}
+                    ❤️
+                    {% else %}
+                    🤍
+                    {% endif %}
+                  </span>
+                  <span class="like-count">{{ item_popular.like.count }}</span>
+
+                  <!-- Add to Watchlist -->
+                  {% if animefan %}
+                  <a href="{% url 'add_to_watchlist' item_popular.id %}?next={{ request.path }}" class="watchlist-btn"
+                    style="margin-left: 10px; font-size: 20px;">➕</a>
+                  {% else %}
+                  <button class="watchlist-btn" style="background-color: transparent; color: #ffffff;"
+                    disabled>➕</button>
+                  {% endif %}
+
+                </div>
+
+
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+  <!-- Horror carousel/content here -->
+</section>
+
+
+<section id="sci-fi" class="content-section genre-section">
+  <h2>Sci-Fi</h2>
+  <p>Explore futuristic worlds, advanced technology, and mind-bending adventures across time and space.</p>
+
+      <section class="content-section" data-carousel>
+         <div class="carousel-container">
+        <div class="carousel-track-container">
+          <div class="carousel-track" data-carousel-track>
+            {% for item_popular in popular_items %}
+            <div class="show-card">
+              <div class="show-card-img-container">
+                <a href="{% url 'anime_detail' item_popular.slug %}">
+                  <img src="{{ item_popular.Anime_poster.url }}" alt="{{ item_popular.Anime_name }}">
+                </a>
+
+                <div class="description-image">
+                  {% if item_popular.slug %}
+                  <a class="disc" href="{% url 'anime_detail' item_popular.slug %}">
+                    {{ item_popular.Anime_description }}
+                  </a>
+                  {% else %}
+                  <span class="disc">{{ item_popular.Anime_description }}</span>
+                  {% endif %}
+                  <hr>
+                  <h5 class="show-card-title">
+                    <a href="{% url 'anime_detail' item_popular.slug %}">{{ item_popular.Anime_name }}</a>
+                  </h5>
+                  <p class="show-card-meta"><span> Rating {{ item_popular.Anime_rate}}</span></p>
+
+                  <!-- Like Button -->
+                  <span class="like-icon" data-id="{{ item_popular.id }}"
+                    onclick="{% if animefan %} likeBtn(this) {% else %} window.location.href='{% url 'login' %}' {% endif %}"
+                    style="font-size:20px; cursor:pointer;">
+                    {% if animefan and animefan in item_popular.like.all %}
+                    ❤️
+                    {% else %}
+                    🤍
+                    {% endif %}
+                  </span>
+                  <span class="like-count">{{ item_popular.like.count }}</span>
+
+                  <!-- Add to Watchlist -->
+                  {% if animefan %}
+                  <a href="{% url 'add_to_watchlist' item_popular.id %}?next={{ request.path }}" class="watchlist-btn"
+                    style="margin-left: 10px; font-size: 20px;">➕</a>
+                  {% else %}
+                  <button class="watchlist-btn" style="background-color: transparent; color: #ffffff;"
+                    disabled>➕</button>
+                  {% endif %}
+
+                </div>
+
+
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+  <!-- Sci-Fi carousel/content here -->
+</section>
+
+
+
+<!-- JavaScript: only toggles .genre-section elements -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Find all genre sections (Action / Fantasy / Drama)
+  const genres = document.querySelectorAll('.genre-section');
+
+  // Hide all genres initially
+  genres.forEach(sec => {
+    sec.style.display = 'none';
+  });
+
+  // Read the "section" parameter (e.g. ?section=fantasy)
+  const params = new URLSearchParams(window.location.search);
+  const sectionId = params.get('section') || 'action'; // default
+
+  // Attempt to show the chosen section
+  const selected = document.getElementById(sectionId);
+  if (selected && selected.classList.contains('genre-section')) {
+    selected.style.display = 'block';
+
+    // Optional: smooth scroll to the selected genre header
+    try {
+      selected.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Slight offset fix (if you use a fixed navbar), use window.scrollBy
+      const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 80;
+      window.scrollBy(0, -navbarHeight);
+    } catch (e) {
+      // ignore if scroll fails
+    }
+  } else {
+    // If requested section not found, show the default 'action'
+    const fallback = document.getElementById('action');
+    if (fallback) fallback.style.display = 'block';
+  }
+});
+</script>
+
+<!-- POPULAR: keep this separate so it is not hidden -->
+<h3>Popular Anime </h3>
+
+
+
+<br>
+<div class="container">
+  <h3>2025 AnimeDa Anime Awards Winners</h3>
+  <p>Relive the Magic</p>
+</div>
+
+{% endblock content %}

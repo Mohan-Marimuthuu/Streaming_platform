@@ -1,0 +1,131 @@
+<style></style>
+              <div class="container" id="about-manu">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <ul>
+                      <h3>Navigation</h3>
+                      <li id="flooter-row"> <a href="">Browse Popular</a> </li>
+                      <li id="flooter-row"> <a href="">Browse Simulcasts</a> </li>
+                      <li id="flooter-row"> <a href="">Release Calendar</a> </li>
+                      <li id="flooter-row"> <a href="">News</a> </li>
+                      <li id="flooter-row"> <a href="">Games</a> </li>
+                    </ul>
+                  </div>
+                  <div class="col-sm-3">
+                    <ul>
+                      <h3>Connect With Us</h3>
+                      <li> <a href="" ><i class="fa fa-bell"></i> Start a Free Trial</a>
+                      </li>
+                      <li id="flooter-row"><a href="">About</a> </li>
+                      <li id="flooter-row"> <a href="">Help Center</a> </li>
+                      <li id="flooter-row"> <a href="">Terms of Use</a> </li>
+                      <li id="flooter-row"> <a href="">Privacy Policy</a> </li>
+                      <li id="flooter-row"> <a href="">Do Not Sell or Share My Personal Information</a> </li>
+                      <li id="flooter-row"> <a href="">Cookie Consent Tool</a> </li>
+                      <li id="flooter-row"> <a href="">Press Inquiries</a> </li>
+                      <li id="flooter-row"> <a href="">Advertising Inquiries</a> </li>
+                      <li id="flooter-row"> <a href="">Get the Apps</a> </li>
+                      <li id="flooter-row"> <a href="">Redeem Gift Card</a> </li>
+                      <li id="flooter-row"> <a href="">Jobs</a> </li>
+                    </ul>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <ul >
+                      <h3>AnimeDa</h3>
+                      <li id="flooter-row"><a href=""><i class="fa fa-youtube-play"></i> Youtube</a> </li>
+                      <li id="flooter-row"> <a href=""><i class="fa fa-facebook-square"></i> Facebook</a> </li>
+                      <li id="flooter-row"> <a href=""><i class="fa fa-telegram"></i> Telegram</a> </li>
+                      <li id="flooter-row"> <a href=""><i class="fa fa-instagram"></i> Instagram</a> </li>
+                      <li id="flooter-row"> <a href=""><i class="fa fa-twitter"></i> Twitter</a> </li>
+                    </ul>
+                  </div>
+                  <div class="col-sm-3">
+                    <ul >
+                      <h3>Account</h3>
+                      {% if animefan %}
+          <li id="flooter-row"> <a href="{% url 'login' %}">Account</a> </li>
+          <li id="flooter-row"> <a href="{% url 'login' %}">Notifications</a></li>
+          <li id="flooter-row"> <a href="{% url 'login' %}">Watchlist</a> </li>
+          <li id="flooter-row"> <a href="{% url 'login' %}">Gift Card</a> </li>
+          <li id="flooter-row"> <a href="{% url 'login' %}">Settings</a> </li>
+          <li id="flooter-row"> <a href="{% url 'login' %}">Privacy</a> </li>
+          <li id="flooter-row"> <a href="{% url 'logout' %}">Log Out</a> </li>
+
+          {% else %}
+                      <li id="flooter-row"><a href="{% url 'account' %}">Create Account</a></li>
+                      <li id="flooter-row"> <a href="{% url 'login' %}">Log In</a> </li>
+                      {% endif %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <hr >
+              <footer >© AnimeDa, LLC
+                <select name="language" id="language-1" >
+                  <option id="singlelanguage">ENGLISH</option>
+                  <option id="singlelanguage">HINDI</option>
+                  <option id="singlelanguage">TAMIL</option>
+                  <option id="singlelanguage">KANNADA</option>
+                  <option id="singlelanguage">MALAYALAM</option>
+                  <option id="singlelanguage">TELUGU</option>
+                </select>
+              </footer>
+
+
+              <hr >
+
+              <div class="container" >
+                <div class="row">
+                  <div class="col-sm-6">
+                    <p class="ooohooo">Welcome to Crunchyroll, your ultimate destination for streaming the best in anime entertainment.
+                      Whether
+                      you’re a lifelong fan or just starting your anime journey, Crunchyroll offers an extensive library
+                      of
+                      top-tier anime series and movies. From action-packed adventures like Naruto and One Piece to
+                      fan-favorites
+                      such as Demon Slayer and Attack on Titan, we bring the world of anime right to your screen. With
+                      thousands
+                      of hours of content, you’ll find something for every mood and taste, whether you’re into
+                      heart-pounding
+                      action, touching romance, or gripping mysteries.</p>
+                    <button type="button" id="more" class="btn btn-primary" data-toggle="collapse" data-target="#about">
+                      more</button>
+                    <div id="about" class="collapse">
+                      <p class="ooohooo">At Crunchyroll, we take pride in being the go-to-platform for anime lovers around the world.
+                        You can
+                        dive into a wide variety of genres, including fantasy, slice of life, and sci-fi, ensuring
+                        there’s
+                        always something new to discover.</p>
+                    </div>
+                  </div>
+
+
+                  <div class="col-sm-6">
+                    <p class="ooohooo">With simulcasts straight from Japan, you’ll never miss a moment of the latest and greatest anime
+                      releases. Our selection goes beyond just series—enjoy a handpicked selection of anime movies that
+                      showcase
+                      the best in animation and storytelling. Watch anytime, anywhere, with the Crunchyroll app
+                      available across
+                      all your devices.</p>
+                    <br><br><br>
+                    <button type="button" id="more1" class="btn btn-primary" data-toggle="collapse"
+                      data-target="#about1">
+                      more</button>
+                    <div id="about1" class="collapse">
+                      <p class="ooohooo">Beyond streaming, Crunchyroll is a hub for all things anime. Explore the Crunchyroll Store for
+                        exclusive anime merchandise, collectibles, and apparel. Stay updated with Crunchyroll News,
+                        delivering
+                        the latest on anime, manga, and pop culture. And for gamers, Crunchyroll Games brings your
+                        favorite
+                        anime worlds to live in exciting and interactive ways. Join the Crunchyroll community and
+                        immerse
+                        yourself in a world where anime is more than just a genre—it’s a lifestyle.</p>
+
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <br>
+              </div>
+              

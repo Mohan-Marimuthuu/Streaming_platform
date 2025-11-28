@@ -1,0 +1,300 @@
+{% extends 'layouts/mani.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+
+   .account_area {
+  float: left;
+  height: 600px;
+  width: 100%;
+  margin-bottom: 9px;
+  overflow: hidden;
+}
+
+.con_area {
+  width: 20%;
+  height: 100%;
+  background-color: var(--bg-color-bl);
+  padding: 0;
+}
+
+.con_area li {
+  list-style-type: none;
+  margin: 0;
+}
+
+#account_nav {
+  margin: 20px;
+  padding: 10px;
+  font-weight: 900;
+  font-size: 22px;
+  background-color: var(--golden-color-of);
+  text-align: center;
+  border-radius: 6px;
+}
+
+#account_nav a {
+  color: #000;
+  text-decoration: none;
+}
+
+.con_det_area {
+  background-color: rgb(225, 225, 225);
+  color: #000000;
+  padding: 20px;
+  max-height: 600px;      /* fixed max height for scroll */
+  display: none;           /* default hidden */
+  overflow-y: auto;        /* scroll appears if content exceeds max-height */
+  border-radius: 8px;      /* optional: rounded corners */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* optional: subtle shadow */
+}
+
+.note {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: background 0.2s;
+}
+
+.note.unread {
+    background-color: #e6f0ff; /* highlight unread notifications */
+    font-weight: 500;
+}
+
+.note small {
+    color: #555;
+    font-size: 12px;
+}
+
+.else_st {
+  margin-top: 40px;
+  margin-left: 40px;
+  background-color: aliceblue;
+  font-size: 28px;
+  padding: 20px;
+  box-shadow: 2px 1px 0px 1px;
+}
+
+/* Profile Section */
+.profile-card {
+  text-align: center;
+}
+
+.profile-circle {
+  width: 100px;
+  height: 100px;
+  background: #2d8a4a;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  font-weight: bold;
+  color: white;
+  overflow: hidden;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.email {
+  color: #444;
+  margin-top: 8px;
+  font-weight: 500;
+}
+/* Laptop & Tablet */
+@media (max-width: 992px) {
+  .con_area {
+    width: 30%;
+  }
+}
+
+/* Tablet Portrait */
+@media (max-width: 768px) {
+  .con_area {
+    width: 35%;
+  }
+
+  #account_nav {
+    font-size: 20px;
+  }
+
+  .profile-circle {
+    width: 85px;
+    height: 85px;
+    font-size: 30px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .account_area {
+    height: auto;
+  }
+
+  .con_area {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 0;
+  }
+
+  #account_nav {
+    display: inline-block;
+    width: auto;
+    margin: 0 10px;
+    font-size: 18px;
+  }
+
+  .con_det_area {
+    min-height: auto;
+  }
+
+  .profile-circle {
+    width: 80px;
+    height: 80px;
+    font-size: 28px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 400px) {
+  .profile-circle {
+    width: 70px;
+    height: 70px;
+    font-size: 24px;
+  }
+
+  #account_nav {
+    font-size: 16px;
+  }
+}
+
+
+</style>
+<br><br>
+<div class="account_area row" >
+  <div id="Container" class="col-sm-3 con_area" >
+         <li id="account_nav"><a href="{% url 'notifications' %}?section=account_item">Account</a></li>
+<li id="account_nav"><a href="{% url 'notifications' %}?section=notif_info">Notifications</a></li>
+<li id="account_nav"><a href="{% url 'notifications' %}?section=watchlist">Watchlist</a></li>
+<li id="account_nav"><a href="{% url 'notifications' %}?section=gift">Gift Card</a></li>
+<li id="account_nav"><a href="{% url 'notifications' %}?section=privacy">Privacy</a></li>
+<li id="account_nav"><a href="{% url 'logout' %}">Log Out</a></li>
+
+          
+  </div>
+
+
+<div class="col-sm-9 con_det_area" id="notif_info">
+    <h2>Notifications</h2>
+    {% if notes %}
+        {% for n in notes %}
+            <div class="note {% if not n.is_read %}unread{% endif %}">
+                {{ n.message }} <br>
+                <small>{{ n.created_at|date:"M d, Y H:i" }}</small>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p style="font-size: 14px; color: #555;">No notifications</p>
+    {% endif %}
+</div>
+
+
+<div class="col-sm-9  profile-card con_det_area" id="account_item">
+    <div class="profile-circle">
+        {% if animefan.Profile_img %}
+            <img src="{{ animefan.Profile_img.url }}" alt="Profile" class="profile-img">
+        {% else %}
+            <span>{{ animefan.Firstname|slice:":1" }}{{ animefan.Lastname|slice:":1" }}</span>
+
+        {% endif %}
+    </div>
+    <h3>{{ animefan.Firstname }} {{ animefan.Lastname }}</h3>
+    <p class="email">{{ animefan.Email }}</p>
+</div>
+
+<div class="col-sm-9 con_det_area" id="watchlist">
+ 
+
+    <h2>My Watchlist</h2>
+
+    {% if messages %}
+        <div>
+            {% for message in messages %}
+                <div style="padding: 10px; margin-bottom: 10px; background-color: #f0f4ff; border-left: 4px solid #3b82f6;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% if watchlist %}
+    {% for w in watchlist %}
+        <div class="watchlist-item" style="display: flex; align-items: center; margin-bottom: 20px; padding: 10px; border: 1px solid #eee; border-radius: 6px;">
+            
+            <img src="{{ w.anime.Anime_poster.url }}" alt="{{ w.anime.Anime_name }}" width="100" style="border-radius: 4px; margin-right: 15px;">
+
+            <div style="flex-grow: 1;">
+                <strong style="font-size: 18px;">{{ w.anime.Anime_name }}</strong><br>
+                <small>{{ w.anime.Anime_description|truncatechars:80 }}</small>
+            </div>
+
+            <div style="margin-left: 15px;">
+                <a href="{% url 'anime_detail' slug=w.anime.slug %}" class="btn btn-primary" style="margin-right: 5px;">Watch Now</a>
+                <a href="{% url 'remove_watchlist' anime_id=w.anime.id %}" class="btn btn-danger">Remove</a>
+            </div>
+
+        </div>
+    {% endfor %}
+{% else %}
+    <p style="font-size: 16px; color: #555;">Your Watchlist is empty.</p>
+{% endif %}
+
+
+
+</div>
+
+<div class="col-sm-9 con_det_area" id="gift">
+    <p>Gift card section...</p>
+</div>
+
+
+<div class="col-sm-9 con_det_area" id="privacy">
+    <p>Privacy section...</p>
+</div>
+
+
+
+<!-- JavaScript: only toggles .genre-section elements -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.con_det_area');
+
+    // hide all
+    sections.forEach(s => s.style.display = 'none');
+
+    // read ?section=
+    const params = new URLSearchParams(window.location.search);
+    const sectionId = params.get('section') || 'account_item'; // default
+
+    // show selected
+    const selected = document.getElementById(sectionId);
+    if (selected) {
+        selected.style.display = 'block';
+    } else {
+        document.getElementById('account_item').style.display = 'block';
+    }
+});
+</script>
+  
+  </div>
+
+  {% endblock content %}
+ 
