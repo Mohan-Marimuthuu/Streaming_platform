@@ -75,6 +75,7 @@ class Animevideo(models.Model):
 
 class AnimeVideoFile(models.Model):
     anime = models.ForeignKey(Animevideo, on_delete=models.CASCADE, related_name='videos')
+    anime_sesion=models.IntegerField(null=True, blank=True)
     episode_number = models.IntegerField()
     episode_name = models.CharField(max_length=200, blank=True, null=True)
     video_file = models.FileField(upload_to='anime_videos/')

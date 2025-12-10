@@ -3,9 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import *
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
-from django.contrib.auth import logout
+
 from django.utils import timezone
 from django.http import JsonResponse
 from django.contrib import messages
@@ -352,7 +350,7 @@ def login(request):
                 request.session['user_id'] = user.id
                 return redirect("index")
             else:
-                messages.error(request, "Invalid password for Animefan account.")
+                messages.error(request, "Invalid password for Username")
                 return redirect("login")
         except Animefan.DoesNotExist:
             pass  # If not found, check CreatorID next
@@ -534,10 +532,12 @@ def upload_anime(request):
             episode_numbers = request.POST.getlist('episode_numbers')
             episode_names = request.POST.getlist('episode_names')
             videos = request.FILES.getlist('videos')
+            anime_sesion=request.POST.getlist('anime_sesion')
 
             # Loop through each uploaded video and create AnimeVideoFile
-            for ep_num, ep_name, video_file in zip(episode_numbers, episode_names, videos):
+            for ep_num, ep_name, video_file ,anime_sesion in zip(episode_numbers, episode_names, videos,anime_sesion):
                 AnimeVideoFile.objects.create(
+                    anime_sesion=anime_sesion,
                     anime=anime,
                     episode_number=int(ep_num),
                     episode_name=ep_name,

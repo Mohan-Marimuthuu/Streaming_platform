@@ -3,327 +3,93 @@
 {% block content %}
 
   <style>
-    /* ---------- Global ---------- */
-/* =========================
-   GLOBAL
-========================= */
-body {
-  margin: 0;
-  background: #0f172a;
-  font-family: "Segoe UI", sans-serif;
-  color: #fff;
-}
-
-/* =========================
-   VIDEO PLAYER WRAPPER
-========================= */
-.container.show-controls {
-  max-width: 900px;
-  margin: 40px auto;
-  background: #020617;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 0 40px rgba(0,0,0,0.6);
-  position: relative;
-}
-
-.container video {
-  width: 100%;
-  height: auto;
-  display: block;
-  background: black;
-}
-
-/* =========================
-   CONTROLS OVERLAY
-========================= */
-.wrapper {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 15px;
-  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-}
-
-/* =========================
-   TIMELINE
-========================= */
-.video-timeline {
-  width: 100%;
-  margin-bottom: 12px;
-}
-
-.progress-area {
-  height: 5px;
-  width: 100%;
-  background: #1e293b;
-  border-radius: 10px;
-  cursor: pointer;
-  position: relative;
-}
-
-.progress-area span {
-  position: absolute;
-  top: -25px;
-  font-size: 12px;
-  color: #00e0ff;
-}
-
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #00e0ff, #6366f1);
-  border-radius: 10px;
-}
-
-/* =========================
-   CONTROLS ROW
-========================= */
-.video-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* LEFT */
-.video-controls .left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.video-controls input[type="range"] {
-  width: 80px;
-  accent-color: #00e0ff;
-}
-
-.video-timer {
-  display: flex;
-  gap: 4px;
-  font-size: 13px;
-  color: #cbd5f5;
-}
-
-/* CENTER */
-.video-controls .center {
-  display: flex;
-  gap: 18px;
-}
-
-.video-controls button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
-  transition: 0.25s;
-}
-
-.video-controls button:hover {
-  color: #00e0ff;
-  transform: scale(1.15);
-}
-
-/* RIGHT */
-.video-controls .right {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-/* SPEED DROPDOWN */
-.playback-content {
-  position: relative;
-}
-
-.speed-options {
-  position: absolute;
-  bottom: 38px;
-  right: 0;
-  background: #020617;
-  border-radius: 8px;
-  display: none;
-  flex-direction: column;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0,0,0,0.7);
-}
-
-.speed-options li {
-  padding: 8px 14px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.speed-options li:hover,
-.speed-options li.active {
-  background: #00e0ff;
-  color: black;
-}
-
-.playback-content:hover .speed-options {
-  display: flex;
-}
-
-/* =========================
-   DESCRIPTION
-========================= */
-.description {
-  max-width: 900px;
-  margin: 18px auto;
-  font-size: 15px;
-  color: #cbd5f5;
-  line-height: 1.6;
-}
-
-/* =========================
-   EPISODE LIST
-========================= */
-h2 {
-  max-width: 900px;
-  margin: 30px auto 15px;
-  font-size: 22px;
-  color: #00e0ff;
-}
-
-/* Episode Card */
-.episode-item {
-  max-width: 900px;
-  margin: 14px auto;
-  display: flex;
-  gap: 14px;
-  background: #020617;
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: 0.3s;
-  border: 1px solid transparent;
-}
-
-.episode-item:hover {
-  transform: translateY(-3px);
-  border-color: #00e0ff;
-  box-shadow: 0 0 20px rgba(0,224,255,0.3);
-}
-
-.episode-item.active {
-  border-color: #6366f1;
-}
-
-/* Thumbnail */
-.thumb {
-  width: 150px;
-  position: relative;
-}
-
-.thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.episode-badge {
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  background: #00e0ff;
-  color: black;
-  padding: 4px 8px;
-  font-weight: bold;
-  font-size: 12px;
-  border-radius: 6px;
-}
-
-/* Episode Info */
-.episode-info {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-}
-
-.episode-info h3 {
-  font-size: 16px;
-  margin: 0;
-  color: white;
-}
-
-/* =========================
-   MOBILE RESPONSIVE
-========================= */
-@media (max-width: 720px) {
-  .episode-item {
-    flex-direction: column;
-  }
-
-  .thumb {
-    width: 100%;
-    height: 180px;
-  }
-
-  .video-controls {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
 
   </style>
 
 
 
     <!-- Video Player -->
-     <div class="container show-controls">
-        <div class="wrapper">
-            <div class="video-timeline">
-                <div class="progress-area">
-                    <span>00:00</span>
-                    <div class="progress-bar"></div>
-                </div>
-            </div>
-            <ul class="video-controls">
-                <li class="options left">
-                    <button class="volume"><i class="fa-solid fa-volume-high"></i></button>
-                    <input type="range" min="0" max="1" step="any">
-                    <div class="video-timer">
-                        <p class="current-time">00:00</p>
-                        <p class="separator"> / </p>
-                        <p class="video-duration">00:00</p>
-                    </div>
-                </li>
-                <li class="options center">
-                    <button class="skip-backward"><i class="fas fa-backward"></i></button>
-                    <button class="play-pause"><i class="fas fa-play"></i></button>
-                    <button class="skip-forward"><i class="fas fa-forward"></i></button>
-                </li>
-                <li class="options right">
-                    <div class="playback-content">
-                        <button class="playback-speed"><span class="material-symbols-rounded">slow_motion_video</span></button>
-                        <ul class="speed-options">
-                            <li data-speed="2">2x</li>
-                            <li data-speed="1.5">1.5x</li>
-                            <li data-speed="1" class="active">Normal</li>
-                            <li data-speed="0.75">0.75x</li>
-                            <li data-speed="0.5">0.5x</li>
-                        </ul>
-                    </div>
-                    <button class="pic-in-pic"><span class="material-icons">picture_in_picture_alt</span></button>
-                    <button class="fullscreen"><i class="fa-solid fa-expand"></i></button>
-                </li>
-            </ul>
-        </div>
-    <video id="anime-player">
-        {% if videos %}
+    <!-- Video Player -->
+<div class="container show-controls">
+
+  <!-- ✅ VIDEO MUST BE FIRST -->
+  <video id="anime-player">
+    {% if videos %}
       <source src="{{ videos.0.video_file.url }}" type="video/mp4">
       Your browser does not support the video tag.
-      {% endif %}
-    </video>
+    {% endif %}
+  </video>
+
+  <!-- ✅ CONTROLS OVERLAY AFTER VIDEO -->
+  <div class="wrapper">
+    <div class="video-timeline">
+      <div class="progress-area">
+        <span>00:00</span>
+        <div class="progress-bar"></div>
       </div>
+    </div>
 
+    <ul class="video-controls">
 
-    <p class="description">
-      Izuku Midoriya dreams of becoming a great hero despite being born without any superpowers...
-    </p>
+      <!-- LEFT -->
+      <li class="options left">
+        <button class="volume">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+        <input type="range" min="0" max="1" step="any">
+
+        <div class="video-timer">
+          <p class="current-time">00:00</p>
+          <p class="separator"> / </p>
+          <p class="video-duration">00:00</p>
+        </div>
+      </li>
+
+      <!-- CENTER -->
+      <li class="options center">
+        <button class="skip-backward">
+          <i class="fas fa-backward"></i>
+        </button>
+
+        <button class="play-pause">
+          <i class="fas fa-play"></i>
+        </button>
+
+        <button class="skip-forward">
+          <i class="fas fa-forward"></i>
+        </button>
+      </li>
+
+      <!-- RIGHT -->
+      <li class="options right">
+
+        <div class="playback-content">
+          <button class="playback-speed">
+            <span class="material-symbols-rounded"><i class="fa fa-eject"></i></span>
+          </button>
+
+          <ul class="speed-options">
+            <li data-speed="2">2x</li>
+            <li data-speed="1.5">1.5x</li>
+            <li data-speed="1" class="active">Normal</li>
+            <li data-speed="0.75">0.75x</li>
+            <li data-speed="0.5">0.5x</li>
+          </ul>
+        </div>
+
+        <button class="pic-in-pic">
+          <span class="material-icons">picture_in_picture_alt</span>
+        </button>
+
+        <button class="fullscreen">
+          <i class="fa-solid fa-expand"></i>
+        </button>
+
+      </li>
+    </ul>
+  </div>
+</div>
+
 
     <h2>Episodes</h2>
 
@@ -332,10 +98,10 @@ h2 {
     <div class="episode-item active" onclick="playEpisode('{{ video.video_file.url }}',this)">
       <div class="thumb">
         <img src="{{ anime.Anime_poster.url }}" alt="{{ anime.Anime_name }}">
-        <div class="episode-badge">{% with video.episode_name|default:"Episode" as ep_name %} {{ ep_name }} {{ video.episode_number }} {% endwith %}</div>
+        <div class="episode-badge">{% with video.episode_name|default:"......" as ep_name %}Episode {{ video.episode_number }} {% endwith %}</div>
       </div>
       <div class="episode-info">
-        <h3>{% with video.episode_name|default:"Episode" as ep_name %} {{ ep_name }} {{ video.episode_number }} {% endwith %}</h3>
+        <h3>{% with video.episode_name|default:"......" as ep_name %} {{ ep_name }} <br><br> Sesion : {{ video.anime_sesion }}<br><br>Episode : {{ video.episode_number }} {% endwith %}</h3>
       </div>
     </div>
 {% endfor %}

@@ -92,10 +92,14 @@ button:hover {
         <div class="video-upload">
             <input type="number" name="episode_numbers" placeholder="Episode Number" required>
             <input type="text" name="episode_names" placeholder="Episode Name">
+             <input type="text" name="episode_desc" placeholder="Episode desc">
+             <input type="number" name="anime_sesion" placeholder="Anime sesion">
             <input type="file" name="videos" required>
+            <br>
         </div>
     </div>
 <button type="button" onclick="addVideoUpload()">Add Another Episode</button>
+<br><br>
 
     <button type="submit">Upload Anime</button>
 </form>
@@ -108,6 +112,7 @@ function addVideoUpload() {
     div.innerHTML = `
         <input type="number" name="episode_numbers" placeholder="Episode Number" required>
         <input type="text" name="episode_names" placeholder="Episode Name">
+        <input type="text" name="episode_desc" placeholder="Episode Name">
         <input type="file" name="videos" required>
     `;
     container.appendChild(div);
