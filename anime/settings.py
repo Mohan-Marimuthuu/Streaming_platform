@@ -25,7 +25,13 @@ SECRET_KEY = 'django-insecure-2i-^kip@)17f1zy+r482^20^qq3=j(oes7mp+p3=rfghzyx@y8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'streaming-platform-4.onrender.com',
+    'streaming-platform-3.onrender.com',
+]
+
 
 from pathlib import Path
 
