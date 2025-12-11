@@ -33,6 +33,11 @@ ALLOWED_HOSTS = [
 ]
 
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://streaming-platform-4.onrender.com',
+]
+
+
 from pathlib import Path
 
 STATIC_ROOT = Path(BASE_DIR) / "staticfiles"
