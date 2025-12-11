@@ -30,6 +30,10 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'streaming-platform-4.onrender.com',
     'streaming-platform-3.onrender.com',
+    'streaming-platform-5.onrender.com',
+    'streaming-platform-6.onrender.com',
+    'streaming-platform-7.onrender.com',
+    'streaming-platform-8.onrender.com',
 ]
 
 
